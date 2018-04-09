@@ -131,11 +131,11 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <!--<record model="ir.actions.act_window" id="action_authorlist">
+        <record model="ir.actions.act_window" id="action_authorlist">
             <field name="name">Authors</field>
             <field name="res_model">biblio.author</field>
             <field name="view_mode">tree,form</field>
-        </record>-->
+        </record>
 
         <!-- Top menu item -->
         <menuitem name="Biblio" id="menu_root"/>
