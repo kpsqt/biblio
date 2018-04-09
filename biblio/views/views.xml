@@ -1,0 +1,154 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="book_list">
+            <field name="name">Books tree view</field>
+            <field name="model">biblio.book</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="author_id"/>
+                    <field name="description"/>
+                    <field name="edition"/>
+                    <field name="publication_year"/>
+                    <field name="isbn"/>
+                    <field name="category_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="book_form">
+            <field name="name">Book form view</field>
+            <field name="model">biblio.book</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Book's Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="General info">
+                                <field name="category_id"/>
+                                <field name="author_id"/>
+                            </group>
+                            <group string="Publication info">
+                                <field name="edition"/>
+                                <field name="publication_year"/>
+                                <field name="isbn"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field nolabel="1" name="description">
+
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="category_list">
+            <field name="name">Category tree view</field>
+            <field name="model">biblio.category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="author_list">
+            <field name="name">Author tree view</field>
+            <field name="model">biblio.author</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="birthdate"/>
+                    <field name="book_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--<record model="ir.ui.view" id="author_form">
+            <field name="name">Author form view</field>
+            <field name="model">biblio.author</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Author's Picture"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="birthdate"/>
+                        </group>
+                        <notebook>
+                            <page string="Biography">
+                                <field nolabel="1" name="autobiography">
+
+                                </field>
+                            </page>
+                            <page string="Books">
+                                <field nolabel="1" name="book_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="edition"/>
+                                        <field name="publication_year"/>
+                                        <field name="isbn"/>
+                                        <field name="category_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>-->
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_booklist">
+            <field name="name">Books</field>
+            <field name="res_model">biblio.book</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_categorylist">
+            <field name="name">Book categories</field>
+            <field name="res_model">biblio.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--<record model="ir.actions.act_window" id="action_authorlist">
+            <field name="name">Authors</field>
+            <field name="res_model">biblio.author</field>
+            <field name="view_mode">tree,form</field>
+        </record>-->
+
+        <!-- Top menu item -->
+        <menuitem name="Biblio" id="menu_root"/>
+
+        <!-- menu categories -->
+        <menuitem name="Books" id="biblio.menu_1" parent="biblio.menu_root" action="action_booklist"/>
+        <menuitem name="Authors" id="biblio.menu_author_list" parent="biblio.menu_root"
+                  action="action_authorlist"/>
+        <menuitem name="Configuration" id="menu_configuration" parent="biblio.menu_root"/>
+        <!-- actions -->
+        <menuitem name="Categories" id="biblio.menu_category_list" parent="menu_configuration"
+                  action="action_categorylist"/>
+        <!--<menuitem name="Server to list" id="biblio" parent="biblio.menu_2"-->
+        <!--action="biblio.action_server"/>-->
+    </data>
+</odoo>
